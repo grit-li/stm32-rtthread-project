@@ -1,0 +1,20 @@
+build chip:       STM32F103ZET6
+build date:       2024-06-30 23:22:06
+build branch:     master
+build hash:       f267dba9
+[changelog]
+d9700dc4 [功能新增]增加TAG，向app传递参数
+b17798cd [功能新增]增加bootm跳转app
+9ca75df1 [fixbug]修复编译打包时间与ubuntu不同步
+4c95b9fb [功能优化]新增bootm，run指令
+4a11d577 [功能新增]增加iboot环境变量设置
+745a00e8 [功能新增]增加iboot command
+c7220860 [功能新增]增加platform time
+b4467918 [功能新增]增加bootdelay
+32835dec [功能新增]增加控制台显示
+b81bf01a [功能新增]增加malloc实现
+2072dd67 [功能新增]增加打包信息
+ff961193 [功能新增]初步完善启动流程
+88ac1fed [功能新增]增加自定义宏
+a15de14e Create README.md
+da0c66dc init code.

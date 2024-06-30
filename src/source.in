@@ -1,0 +1,6 @@
+
+SOURCES += src/init/startup.c
+SOURCES += src/main.c
+
+LOCAL_CFLAGS +=
+LOCAL_LDFLAGS += -T$(TOP)/ldscripts/STM32F103ZETx_FLASH.ld
