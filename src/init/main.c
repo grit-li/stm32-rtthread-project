@@ -4,10 +4,13 @@
 #include <syslog.h>
 #include <stm32_types.h>
 
+#include "device/led.h"
+
 int main(void)
 {
+    led_init();
     while(1) {
+        led_toggle();
         rt_thread_mdelay(500);
-        LOGD("hello stm32 rtthread!\n");
     }    
 }
