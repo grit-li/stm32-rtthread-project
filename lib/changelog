@@ -1,0 +1,58 @@
+build chip:       STM32F103ZET6
+build date:       2024-09-17 22:41:01
+build branch:     master
+build hash:       600e56dd
+[changelog]
+600e56dd [功能优化]STM32F103 syslog默认printf打印
+83a41fc5 [功能新增]sample can增加消息队列及过滤器
+cadffac5 [功能新增]增加CAN过滤器
+0ecd8294 [功能优化]syslog增加互斥锁
+8eaac532 [功能优化]移除rtdevice框架
+a4786ea9 [功能新增]SYSLOG支持printf打印
+52c2d51c [功能优化]移除clog
+267f2128 [功能新增]SYSLOG支持颜色打印
+68145b5a [功能新增]同步keil环境编译
+27f1fa61 [版本]更新版本号V0.0.4
+c9418b31 [代码优化]移除hal层
+08420d5e [fixbug]修复编译打包时间与ubuntu不同步
+bb0ed3a0 [功能新增]增加changelog生成
+6e09a77e [功能新增]增加stm32startup
+539a688b [代码重构]sample直接链接对应模块lib
+19cebc31 [功能新增]增加中断向量表重定向
+e356f425 [fixbug]修复链接文件报错
+0f26d1e4 [功能变更]sample改为独立链接文件
+6cc5be13 [fixbug]gpio寄存器设置错误
+4fc62aa8 [功能新增]增加keil编译
+63a61ad0 [功能新增]支持编译sample
+562815bb [功能变更]修改获取版本号方式
+a9ed732e [功能新增]合入最新代码
+3e73e2e7 [功能新增]新增F103平台
+6d87dfdd [功能新增]增加pin设备及堆栈溢出打印
+6200cff3 [版本]更新版本号
+e55427db [功能新增]增加devfs文件系统
+56271589 [fixbug]接收串口数据发生溢出
+d3333509 [功能新增]增加syslogd及logread命令
+def42724 [代码优化]调整cpuusage
+17b57cae [功能新增]cutils增加property
+63bd6050 [功能新增]rtthread增加msh命令行
+47ac47e9 [代码优化]增加rtthread内存管理，并移除若干文件
+a7eaace7 [功能新增]增加获取cpu使用率接口
+544a9cbd [功能优化]更新RT_USING_HOOK，使用接口方式调用
+fd1bcf38 [代码优化]关闭hook和debug
+ee7b8734 [功能更新]初步适配rtthread-nano
+1ddde104 [功能新增]优化rtthread代码及增加cutils库
+80cbd371 [功能新增]增加安装脚本，打包脚本及链接脚本
+31dac77a [功能新增]增加rtthread-nano
+77304453 [功能更新]更新带newlib的gcc编译器
+fe6776a1 [功能新增]增加中断向量表及systick
+cc504c53 [fixbug]FLASH寄存器地址错误
+3340dde5 [功能新增]增加systick寄存器函数封装
+fb6ab73a [功能新增]增加usart寄存器函数封装
+82c2134b [fixbug]gpio设置属性异常
+efafd6aa [功能新增]完成stm32-platform库基础功能
+f1d934f7 [功能新增]增加gpio寄存器函数封装
+e1532800 [功能新增]增加flash寄存器函数封装
+e15d5c00 [功能新增]增加scb和scs寄存器函数封装
+94d1d7ea [功能新增]增加rcc和nvic寄存器函数封装
+98dc89f9 [功能新增]增加基础编译脚本
+8b7fd0e5 init code

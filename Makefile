@@ -22,7 +22,8 @@ vpath %.s $(sort $(dir $(ASM_SOURCES)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
 vpath %.cpp $(sort $(dir $(CPP_SOURCES)))
 
-OBJECT_FILE = $(subst src,$(OBJ_PATH),$(C_SOURCES:.c=.o)) $(subst src,$(OBJ_PATH),$(ASM_SOURCES:.s=.o)) $(subst src,$(OBJ_PATH),$(CPP_SOURCES:.cpp=.o))
+OBJECT_FILE = $(notdir $(C_SOURCES:.c=.o)) $(notdir $(ASM_SOURCES:.s=.o)) $(notdir $(CPP_SOURCES:.cpp=.o))
+OBJECT_FILE := $(addprefix $(OBJ_PATH)/,$(OBJECT_FILE))
 
 .PHONY: rebuild all clean
 all: $(OBJECT_FILE) Makefile | $(OBJ_PATH)

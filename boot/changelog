@@ -1,8 +1,10 @@
 build chip:       STM32F103ZET6
-build date:       2024-06-30 23:22:06
+build date:       2024-07-21 19:16:00
 build branch:     master
-build hash:       f267dba9
+build hash:       00a6952d
 [changelog]
+00a6952d [代码优化]新增编译参数及调整bootm支持镜像
+86c9971e [功能变更]TAG大小为实际大小
 d9700dc4 [功能新增]增加TAG，向app传递参数
 b17798cd [功能新增]增加bootm跳转app
 9ca75df1 [fixbug]修复编译打包时间与ubuntu不同步

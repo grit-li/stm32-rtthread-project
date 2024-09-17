@@ -1,6 +1,5 @@
+SOURCES += src/startup/boot.c
+SOURCES += src/init/main.c
 
-SOURCES += src/init/startup.c
-SOURCES += src/main.c
-
-LOCAL_CFLAGS +=
-LOCAL_LDFLAGS += -T$(TOP)/ldscripts/STM32F103ZETx_FLASH.ld
+LOCAL_CFLAGS += -Iinclude -Iinclude/rtthread-nano -Iinclude/cutils -Isrc/include
+LOCAL_LDFLAGS += -T$(TOP)/ldscripts/STM32F103ZETx_FLASH.ld -Llib -lstm32startup -lcutils -Wl,--whole-archive -lrtthread -Wl,--no-whole-archive -lSTM32F103

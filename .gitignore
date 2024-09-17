@@ -12,3 +12,6 @@ out
 !/boot
 !/src
 !/ldscripts
+
+!/include
+!/lib

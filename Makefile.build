@@ -15,10 +15,10 @@ OBJCOPY=$(CROSS_COMPILE_PREFIX)objcopy
 OBJDUMP=$(CROSS_COMPILE_PREFIX)objdump
 AR=$(CROSS_COMPILE_PREFIX)ar
 NM=$(CROSS_COMPILE_PREFIX)nm
-ASFLAGS=-nostdinc -fno-builtin -Wall -fdata-sections -ffunction-sections -Wa,-mimplicit-it=thumb
-CFLAGS=-nostdinc -fno-builtin -Wall -fdata-sections -ffunction-sections -gdwarf-2
-CXXFLAGS=-nostdinc -fno-builtin -nostdinc++ -Wall -fdata-sections -ffunction-sections -gdwarf-2
-LDFLAGS=-Wl,--gc-sections -nostdlib
+ASFLAGS=-Wall -fdata-sections -ffunction-sections -Wa,-mimplicit-it=thumb
+CFLAGS=-Wall -fdata-sections -ffunction-sections -gdwarf-2
+CXXFLAGS=-Wall -fdata-sections -ffunction-sections -gdwarf-2
+LDFLAGS=-Wl,--gc-sections
 CPPFLAGS=-g
 ARCH=arm
 CROSS_COMPILE=arm-none-eabi-

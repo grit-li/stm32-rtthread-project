@@ -1,0 +1,6 @@
+#ifndef __STM32_PLATFORM_VERISON_H__
+#define __STM32_PLATFORM_VERISON_H__
+
+#define STM32_PLATFORM_VERSION "V0.0.4"
+
+#endif
