@@ -1,8 +1,9 @@
 build chip:       STM32F103ZET6
-build date:       2024-07-21 19:16:00
+build date:       2024-09-21 13:34:21
 build branch:     master
-build hash:       00a6952d
+build hash:       f8baa0ae
 [changelog]
+f8baa0ae [功能新增]增加env.ini文件生成
 00a6952d [代码优化]新增编译参数及调整bootm支持镜像
 86c9971e [功能变更]TAG大小为实际大小
 d9700dc4 [功能新增]增加TAG，向app传递参数
