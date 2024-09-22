@@ -15,7 +15,7 @@ static HGPIO hled = HGPIO_NULL;
 
 static inline void LED(HGPIO h, int n)
 {
-	n ? gpio_set_status(h, gpio_status_low) : gpio_set_status(h, gpio_status_high);
+    n ? gpio_set_status(h, gpio_status_low) : gpio_set_status(h, gpio_status_high);
     //LOGD("LED: %s\n", n ? "On" : "Off");
 }
 

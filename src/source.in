@@ -1,7 +1,9 @@
 SOURCES += src/startup/boot.c
 SOURCES += src/init/main.c
 SOURCES += src/device/led.c
+SOURCES += src/device/can.c
 
+SOURCES += src/protocol/can_protocol.c
 LOCAL_CFLAGS += -Isrc
 LOCAL_CFLAGS += -Iinclude -Iinclude/rtthread-nano -Iinclude/cutils
 LOCAL_LDFLAGS += -T$(TOP)/ldscripts/STM32F103ZETx_FLASH.ld -Llib -lstm32startup -lcutils -Wl,--whole-archive -lrtthread -Wl,--no-whole-archive -lSTM32F103
