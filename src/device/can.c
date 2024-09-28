@@ -110,13 +110,14 @@ static int32_t can_append_packet_data(const uint8_t* data, int32_t len)
         LOGE("can device buffer is full!\n");
         return -1;
     }
-    rt_memcpy(canProtocolBuffer, data, len);
+    rt_memcpy(&canProtocolBuffer[canProtocolBufferCount], data, len);
     canProtocolBufferCount += len;
     return canProtocolBufferCount;
 }
 static void can_dispose_single_packet(const uint8_t* data, int32_t size)
 {
     if(can_append_packet_data(data, size) < 0) {
+        canProtocolBufferCount = 0;
         return;
     }
 
@@ -129,20 +130,23 @@ static void can_dispose_single_packet(const uint8_t* data, int32_t size)
 static void can_dispose_mult_packet(const uint8_t* data, int32_t size)
 {
     if(can_append_packet_data(data, size) < 0) {
+        canProtocolBufferCount = 0;
         return;
     }
     uint8_t len = canProtocolBuffer[0] + 2;
+
     if(len != canProtocolBufferCount) {
+        LOGD("buffer error. %d != %d\n", len, canProtocolBufferCount);
         canProtocolBufferCount = 0;
         return;
     }
     uint16_t crc = canProtocolBuffer[canProtocolBufferCount - 1] << 8 | canProtocolBuffer[canProtocolBufferCount - 2];
-    if(crc == can_cipher_crc16(canProtocolBuffer, canProtocolBufferCount)) {
+    if(crc == can_cipher_crc16(canProtocolBuffer, canProtocolBufferCount -2)) {
         if(canNotify.can_recv_data) {
             canNotify.can_recv_data(canProtocolBuffer, canProtocolBufferCount - 2);
         }
     } else {
-        LOGE("packet error! %04x != %04x\n", crc, can_cipher_crc16(canProtocolBuffer, canProtocolBufferCount - 2));
+        LOGE("packet crc error! %04x != %04x\n", crc, can_cipher_crc16(canProtocolBuffer, canProtocolBufferCount - 2));
     }
     canProtocolBufferCount = 0;
 }
@@ -155,15 +159,15 @@ static void can_parser_protocol(const struct can_frame_t* frame)
 
     switch(frame->DATA[0] & CAN_PACKET_TYPE_MASK) {
         case CAN_PACKET_SINGLE:
-            LOGD("recv can single packet\n");
+            // LOGD("recv can single packet\n");
             can_dispose_single_packet(&frame->DATA[1], frame->DLC - 1);
             break;
         case CAN_PACKET_END:
-            LOGD("recv can mult packet\n");
+            // LOGD("recv can mult packet\n");
             can_dispose_mult_packet(&frame->DATA[1], frame->DLC - 1);
             break;
         default:
-            LOGD("too few packets, waiting for the next packet\n");
+            // LOGD("too few packets, waiting for the next packet\n");
             can_append_packet_data(&frame->DATA[1], frame->DLC - 1);
             break;
     }
@@ -183,7 +187,7 @@ static void can_thread_entry(void *parameter)
     struct can_frame_t buffer = { 0 };
     while(1) {
        if(rt_mq_recv(&canMq, &buffer, sizeof(struct can_frame_t), RT_WAITING_FOREVER) == RT_EOK) {
-           printCanData(&buffer);
+        //    printCanData(&buffer);
            can_parser_protocol(&buffer);
        }
     }
