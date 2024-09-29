@@ -1,12 +1,16 @@
 build chip:       STM32F103ZET6
-build date:       2024-09-17 22:41:01
+build date:       2024-09-29 23:54:51
 build branch:     master
-build hash:       600e56dd
+build hash:       b8d499e5
 [changelog]
+56c7c296 [代码优化]移除代码中TAB键
+708f8ddd [功能新增]增加读取设备ID
 600e56dd [功能优化]STM32F103 syslog默认printf打印
 83a41fc5 [功能新增]sample can增加消息队列及过滤器
 cadffac5 [功能新增]增加CAN过滤器
 0ecd8294 [功能优化]syslog增加互斥锁
+501751f6 [fixbug]修复CAN IDE/RTR数据错误
+ad56d975 [代码优化]移除rtthread未实现的代码
 8eaac532 [功能优化]移除rtdevice框架
 a4786ea9 [功能新增]SYSLOG支持printf打印
 52c2d51c [功能优化]移除clog

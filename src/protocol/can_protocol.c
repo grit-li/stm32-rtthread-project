@@ -2,6 +2,9 @@
 #include <rtthread.h>
 #include <stm32_gcc_attribute.h>
 #include <syslog.h>
+#include <version.h>
+#include <common.h>
+#include "stm32/system.h"
 #include "device/can.h"
 #include "can_protocol.h"
 #include "can_ack.h"
@@ -130,13 +133,19 @@ static void can_send_ack(uint8_t ack, uint8_t state)
 static void can_send_device_info(void)
 {
     struct CAN_REPORT_INFO_PACKET_T msg;
+    char buffer[16];
+    uint32_t UID[3];
+    rt_memset(UID, 0, sizeof(UID));
+    rt_memset(buffer, 0, sizeof(buffer));
     rt_memset(&msg, 0, sizeof(struct CAN_REPORT_INFO_PACKET_T));
     msg.head.cmd = CAN_REPORT_INFO_CMD;
     msg.head.len = sizeof(struct CAN_REPORT_INFO_PACKET_T);
-    rt_memcpy(msg.uuid, "test", 4);
-    rt_memcpy(msg.version, "V1.0.0001", 10);
-    rt_memcpy(msg.project, "CRCP11", 7);
-    rt_memcpy(msg.build, "2024/09/22 21:42:36", 20);
+    stm32_env_get_project(buffer, sizeof(buffer));
+    stm32_platform_device_id(UID, sizeof(UID)/sizeof(UID[0]));
+    rt_memcpy(msg.uuid, UID, sizeof(UID));
+    rt_memcpy(msg.version, STM32_PROJECT_VERSION, sizeof(STM32_PROJECT_VERSION));
+    rt_memcpy(msg.project, buffer, rt_strlen(buffer));
+    rt_memcpy(msg.build, STM32_BUILD_TIME, sizeof(STM32_BUILD_TIME));
     uint16_t crc = can_cipher_crc16((const uint8_t *)&msg, sizeof(struct CAN_REPORT_INFO_PACKET_T)); 
     can_send_packet(CAN_HOST_AFFAIR_ID(canDeviceSessionId), CAN_REPORT_INFO_CMD_ACK, (const uint8_t*)&msg, sizeof(struct CAN_REPORT_INFO_PACKET_T), crc);
 }
