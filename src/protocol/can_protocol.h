@@ -81,7 +81,7 @@ struct CAN_HEART_PACKET_T
 struct CAN_REPORT_INFO_PACKET_T
 {
     struct CAN_PROTOCOL_HEAD_T head;
-    uint8_t uuid[12];
+    uint8_t uuid[28];
     uint8_t version[24];
     uint8_t project[24];
     uint8_t build[24];

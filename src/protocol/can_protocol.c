@@ -142,7 +142,7 @@ static void can_send_device_info(void)
     msg.head.len = sizeof(struct CAN_REPORT_INFO_PACKET_T);
     stm32_env_get_project(buffer, sizeof(buffer));
     stm32_platform_device_id(UID, sizeof(UID)/sizeof(UID[0]));
-    rt_memcpy(msg.uuid, UID, sizeof(UID));
+    rt_snprintf((char*)msg.uuid, sizeof(msg.uuid), "%08X%08X%08X", UID[0], UID[1], UID[2]);
     rt_memcpy(msg.version, STM32_PROJECT_VERSION, sizeof(STM32_PROJECT_VERSION));
     rt_memcpy(msg.project, buffer, rt_strlen(buffer));
     rt_memcpy(msg.build, STM32_BUILD_TIME, sizeof(STM32_BUILD_TIME));
